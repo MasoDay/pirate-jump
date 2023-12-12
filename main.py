@@ -1,11 +1,14 @@
 import pygame, sys
+from settings import *
+from tiles import Tile
 
 # PyGame setup
 pygame.init()
 screen_width = 1200
 screen_height = 700
-screen = pygame.display.set_mode((screen_height, screen_height))
+screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
+test_tile = pygame.sprite.Group(Tile((100, 100), 200))
 
 while True:
     for event in pygame.event.get():
@@ -14,6 +17,7 @@ while True:
             sys.exit()
 
     screen.fill("black")
+    test_tile.draw(screen)
 
     pygame.display.update()
     clock.tick(60)
