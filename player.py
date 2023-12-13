@@ -4,8 +4,10 @@ from support import import_folder
 class Player(pygame.sprite.Sprite):
     def __init__(self, position):
         super().__init__()
-        self.image = pygame.Surface((32, 64))
-        self.image.fill("red")
+        self.import_character_assets()
+        self.frame_index = 0
+        self.animation_speed = 0.15
+        self.image = self.animations["idle"][self.frame_index]
         self.rect = self.image.get_rect(topleft = position)
 
         # Player movement
@@ -15,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = -16
 
     def import_character_assets(self):
-        character_path = "../graphics/character/"
+        character_path = "..1 - Basic platformer/graphics/character/"
         self.animations = {"idle": [], "run": [], "jump": [], "fall": []}
 
         for animation in self.animations.keys():
