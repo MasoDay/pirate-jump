@@ -17,8 +17,9 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = -16
 
     def import_character_assets(self):
-        character_path = "..1 - Basic platformer/graphics/character/"
-        self.animations = {"idle": [], "run": [], "jump": [], "fall": []}
+        character_path = "/assets/1 - Basic platformer/graphics/character/"
+        self.animations = {"dust_particles": [], "fall": [],
+                           "idle": [], "jump": [], "run": []}
 
         for animation in self.animations.keys():
             full_path = character_path + animation
