@@ -8,6 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.frame_index = 0
         self.animation_speed = 0.15
         self.image = self.animations["idle"][self.frame_index]
+
         self.rect = self.image.get_rect(topleft = position)
 
         # Player movement
@@ -17,9 +18,10 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = -16
 
     def import_character_assets(self):
-        character_path = "/assets/1 - Basic platformer/graphics/character/"
-        self.animations = {"dust_particles": [], "fall": [],
-                           "idle": [], "jump": [], "run": []}
+        character_path = "./assets/1 - Basic platformer/graphics/character/"
+        # "./graphics/character/" when code and graphics are under the Base Platformer
+        self.animations = {"idle": [], "run": [],
+                           "jump": [], "fall": []}
 
         for animation in self.animations.keys():
             full_path = character_path + animation
