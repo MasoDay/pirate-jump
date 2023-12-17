@@ -2,7 +2,7 @@ import pygame
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, position):
+    def __init__(self, position, surface):
         super().__init__()
         self.import_character_assets()
         self.import_dust_run_particles()
@@ -74,6 +74,10 @@ class Player(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft = self.rect.topleft)
         elif self.on_ceiling:
             self.rect = self.image.get_rect(midtop = self.rect.midtop)
+
+    def run_dust_animation(self):
+        if self.status == "run" and self.on_ground:
+            self.dust_frame_index += self.dust_animation_speed
 
     def get_input(self):
         keys = pygame.key.get_pressed()
