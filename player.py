@@ -78,6 +78,15 @@ class Player(pygame.sprite.Sprite):
     def run_dust_animation(self):
         if self.status == "run" and self.on_ground:
             self.dust_frame_index += self.dust_animation_speed
+            if self.dust_frame_index >= len(self.dust_run_particles):
+                self.dust_frame_index = 0
+
+            dust_particle = self.dust_run_particles[int(self.dust_frame_index)]
+
+            if self.facing_right:
+                position = self.rect.bottomleft - pygame.math.Vector2(6, 10)
+                self.display_surface.blit(dust_particle, position)
+
 
     def get_input(self):
         keys = pygame.key.get_pressed()
@@ -116,3 +125,4 @@ class Player(pygame.sprite.Sprite):
         self.get_input()
         self.get_status()
         self.animate()
+        self.run_dust_animation()
