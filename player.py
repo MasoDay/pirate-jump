@@ -87,6 +87,10 @@ class Player(pygame.sprite.Sprite):
                 position = self.rect.bottomleft - pygame.math.Vector2(6, 10)
                 self.display_surface.blit(dust_particle, position)
 
+            else:
+                position = self.rect.bottomright - pygame.math.Vector2(6, 10)
+                flipped_dust_particle = pygame.transform.flip(dust_particle, True, False)
+                self.display_surface.blit(flipped_dust_particle, position)
 
     def get_input(self):
         keys = pygame.key.get_pressed()
