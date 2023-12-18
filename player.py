@@ -2,7 +2,7 @@ import pygame
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, position, surface):
+    def __init__(self, position, surface, create_jump_particles):
         super().__init__()
         self.import_character_assets()
         self.import_dust_run_particles()
@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.dust_frame_index = 0
         self.dust_animation_speed = 0.15
         self.display_surface = surface
+        self.create_jump_particles = create_jump_particles
 
         # Player movement
         self.direction = pygame.math.Vector2(0, 0)
@@ -43,7 +44,8 @@ class Player(pygame.sprite.Sprite):
             self.animations[animation] = import_folder(full_path)
 
     def import_dust_run_particles(self):
-        self.dust_run_particles = import_folder("./assets/1 - Basic platformer/graphics/character/dust_particles/run")
+        self.dust_run_particles = import_folder(
+            "./assets/1 - Basic platformer/graphics/character/dust_particles/run")
 
     def animate(self):
         animation = self.animations[self.status]
@@ -106,6 +108,7 @@ class Player(pygame.sprite.Sprite):
 
         if keys[pygame.K_SPACE] and self.on_ground:
             self.jump()
+            self.create_jump_particles(self.rect.midbottom)
 
     def get_status(self):
         if self.direction.y < 0:
